@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework.response import Response
-from .models import Post
-from .serializers import PostSerializer
+from api.models import Blog
+from api.serializers import BlogSerializer
 from rest_framework import status
 from rest_framework.views import APIView
 from django.http import Http404
@@ -12,11 +12,11 @@ from rest_framework.decorators import api_view
 
 #using generic class based views
 
-class PostList(generics.ListCreateAPIView):
-    queryset = Post.objects.all()
-    serializer_class = PostSerializer
+class BlogList(generics.ListCreateAPIView):
+    queryset = Blog.objects.all()
+    serializer_class = BlogSerializer
 
 
 class PostDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Post.objects.all()
-    serializer_class = PostSerializer
+    queryset = Blog.objects.all()
+    serializer_class = BlogSerializer

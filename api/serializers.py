@@ -1,14 +1,14 @@
 from rest_framework import serializers
-from myPost.models import Post
+from api.models import Blog
 
-class PostSerializer(serializers.ModelSerializer):
+class BlogSerializer(serializers.ModelSerializer):
     
     class Meta:
-        model = Post
+        model = Blog
         fields = ['id','title','content','author']
 
     def create(self, validated_data):
-        return Post.objects.create(**validated_data)
+        return Blog.objects.create(**validated_data)
     
     def update(self, instance, validated_data):
         instance.title = validated_data.get('title', instance.title)
@@ -16,4 +16,4 @@ class PostSerializer(serializers.ModelSerializer):
         instance.author = validated_data.get('author', instance.author)
         instance.save()
         return instance
-    
+     
