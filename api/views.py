@@ -54,6 +54,16 @@ class BlogDetail(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
+    def patch(self, request, pk, format=None):
+        blogs = self.get_object(pk)
+        serializer = BlogSerializer(blogs, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        
+
+
 #generic class based-views
 # class BlogList(generics.ListCreateAPIView):
 #     queryset = Blog.objects.all()
