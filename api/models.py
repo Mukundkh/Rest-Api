@@ -9,3 +9,4 @@ class Blog(models.Model):
 
     class Meta:
         ordering = ['created_on']
+
